@@ -40,7 +40,7 @@ type Suscription {
   suscription_type:Suscriptions!
   end_date:DateTime!
   price:Int!
-
+  
 }
 
 

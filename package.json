@@ -7,8 +7,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start":"nodemon  nodemon -L src/bin/www"
-  },
+
+    "start": "nodemon nodemon -L src/bin/www"
+    },
   "dependencies": {
     "graphql-yoga": "^1.16.2"
   },

@@ -8,7 +8,7 @@ const typeDefs =  `
 `;
 
 let movies = [];
-let idCount = 0
+let idCount = 0;
 
 const resolvers = {
 
