@@ -1,2 +1,2 @@
-endpoint: https://us1.prisma.sh/ligorio-edwin-e116d8/prueba/dev
+endpoint: https://us1.prisma.sh/ligorio-edwin-e116d8/netflix/dev
 datamodel: datamodel.graphql

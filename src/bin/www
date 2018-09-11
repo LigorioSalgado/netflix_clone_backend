@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+var server = require('../index');
+
+
+server.start(() =>console.log("Server is running"));
+

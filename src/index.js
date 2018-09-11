@@ -36,4 +36,4 @@ const server = new GraphQLServer({
     resolvers
 })
 
-server.start(() => console.log("Server is running in http://localhost:4000"))
+module.exports = server;

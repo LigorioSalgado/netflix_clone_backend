@@ -1,14 +1,15 @@
+
 type User {
   id: ID! @unique
   name: String!
   lastname:String!
   email:String! @unique
   password:String!
-  birth_date:Date!
+  birth_date:DateTime!
   gender:Genders
-  status:Boolean @default(true)
+  status:Boolean @default(value:true)
   paypal_id:String
-  avatar:String @default("https://vignette.wikia.nocookie.net/bungostraydogs/images/1/1e/Profile-icon-9.png/revision/latest?cb=20171030104015")
+  avatar:String @default(value:"https://vignette.wikia.nocookie.net/bungostraydogs/images/1/1e/Profile-icon-9.png/revision/latest?cb=20171030104015")
 }
 
 type Movie {
@@ -18,9 +19,9 @@ type Movie {
     sinopsis:String!
     rate:Rates!
     poster:String
-    relased_date:Date!
+    relased_date:DateTime!
     genre:Genres!
-    length:Integer!
+    length:Int!
     video_url:String!
     suscription_type:Suscriptions!
 }
@@ -37,16 +38,12 @@ type Suscription {
   id: ID! @unique
   user:User!
   suscription_type:Suscriptions!
-  end_date:Date!
-  price:Prices!
+  end_date:DateTime!
+  price:Int!
 
 }
 
-enum Prices{
-    0 
-    99
-    149
-}
+
 
 enum Suscriptions{
   FREE
