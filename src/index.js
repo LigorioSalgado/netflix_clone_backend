@@ -8,7 +8,7 @@ const typeDefs =  `
 `;
 
 let movies = [];
-let idCount = 0
+let idCount = 0;
 
 const resolvers = {
 
@@ -36,4 +36,4 @@ const server = new GraphQLServer({
     resolvers
 })
 
-server.start(() => console.log("Server is running in http://localhost:4000"))
+module.exports = server

@@ -6,7 +6,7 @@ type User {
   password:String!
   birth_date:Date!
   gender:Genders
-  status:Boolean @default(true)
+  status:Boolean @defaultValue(true)
   paypal_id:String
   avatar:String @default("https://vignette.wikia.nocookie.net/bungostraydogs/images/1/1e/Profile-icon-9.png/revision/latest?cb=20171030104015")
 }
@@ -38,15 +38,11 @@ type Suscription {
   user:User!
   suscription_type:Suscriptions!
   end_date:Date!
-  price:Prices!
+  price:Integer!
 
 }
 
-enum Prices{
-    0 
-    99
-    149
-}
+
 
 enum Suscriptions{
   FREE
