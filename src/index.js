@@ -1,39 +1,27 @@
-const { GraphQLServer } =  require('graphql-yoga')
+const { GraphQLServer } =  require('graphql-yoga');
+const { Prisma } = require('prisma-binding');
 
-const typeDefs =  `
-
-    type Query{
-        description:String
-    }
-`;
-
-let movies = [];
-let idCount = 0;
 
 const resolvers = {
 
-    Query:{
-        movies:() => movies
-    },
-     
-    Mutation:{
-        createMovie:(root,args) => {
-            const movie = {
-                id:`id_movie_${idCount++}`,
-                title:args.title,
-                content:args.content,
-            }
-            movies.push(movie)
-            return movie
-        }
-
-    }
+   
 
 }
 
 const server = new GraphQLServer({
     typeDefs:'./src/schema.graphql',
-    resolvers
+    resolvers,
+    context: req => ({
+        ...req,
+        db: new Prisma({
+          typeDefs: 'src/generated/prisma.graphql',
+          endpoint: 'https://us1.prisma.sh/ligorio-edwin-e116d8/netflix/dev',
+          debug: true,
+        }),
+    }),
+    resolverValidationOptions: {
+        requireResolversForResolveType: false
+      }
 })
 
 module.exports = server;

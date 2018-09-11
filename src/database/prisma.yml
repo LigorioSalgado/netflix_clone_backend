@@ -1,2 +1,7 @@
 endpoint: https://us1.prisma.sh/ligorio-edwin-e116d8/netflix/dev
 datamodel: datamodel.graphql
+
+#Deploy hook
+hooks:
+  post-deploy:
+    - graphql get-schema --project database
