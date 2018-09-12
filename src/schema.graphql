@@ -1,14 +1,17 @@
+#import User from './generated/prisma.graphql';
 
 type Query {
-    movies:[Movie!]!
+    users:[User!]!
 }
 
 type Mutation {
-    createMovie(title:String!,content:String!):Movie
+    signup(name: String!, email: String!, 
+    lastname: String!, password: String!, 
+    birth_date: String!): AuthPayload
+    login(email: String!, password: String!): AuthPayload
 }
 
-type Movie {
-    id:ID!,
-    title:String!,
-    content:String!
+type AuthPayload{
+    token: String
+    user: User
 }
