@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
+const {APP_SECRET} = require("../const");
 
 const getID =  `{ id }`
 
@@ -10,7 +11,7 @@ async function signup(parent,args,context,info) {
        {data:{...args,password},getID}
     )
 
-    const token = await jsonwebtoken.sign({userId:user.id},"secret")
+    const token = await jsonwebtoken.sign({userId:user.id},APP_SECRET)
                     
  
     return {
@@ -32,7 +33,7 @@ async function login(parent,args,context,info){
     console.log(validPassword)
     if(!validPassword) throw new Error("Invalid password")
 
-    const token = await jsonwebtoken.sign({userId:user.id},"secret")
+    const token = await jsonwebtoken.sign({userId:user.id},APP_SECRET)
 
     return {
         token,
@@ -40,6 +41,10 @@ async function login(parent,args,context,info){
     }
 
 }
+
+
+
+
 
 module.exports = {
     signup,
