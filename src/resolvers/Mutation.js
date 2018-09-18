@@ -53,8 +53,7 @@ async function login(parent,args,context,info){
 
 
     const user = await context.db.query.user({
-        where:{email:args.email}
-    })
+        where:{email:args.email}})
 
     if(!user) throw new Error("Not such user find");
 
@@ -106,11 +105,60 @@ async function upgradeSuscription(parent,args,context,info){
 }   
 
 
+const queryRate = `{
+
+    id,
+    rate,
+    movie{
+        title
+    },
+    user{
+        name,
+        lastname
+    }
+}`
+async function addRating(parent,args,context,info){
+    let user_id = getUserId(context)
+    let newRate =  await context.db.mutation.createRating({data:{
+        user:{
+            connect:{
+                id:user_id
+            }
+        },
+        movie:{
+            connect:{
+                id:args.movie_id
+            }
+        },
+        rate:args.rate
+    }},queryRate)
+    return newRate
+}
+
+
+async function updateUser(parent,args,context,info){
+    let user_id = getUserId(context)
+    if(args.password) args.password = await bcrypt.hash(args.password,10)
+
+
+    let updatedUser =  await context.db.mutation.updateUser({
+        data:{...args},where:{
+            id:user_id
+        }
+    })
+
+    return updatedUser
+
+}
+
+
 
 
 
 module.exports = {
     signup,
+    addRating,
+    updateUser,
     login,
     upgradeSuscription
 }

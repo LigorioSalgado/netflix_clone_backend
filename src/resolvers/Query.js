@@ -4,6 +4,11 @@ async function users(parent,args,context,info) {
     return context.db.query.users({},info)
 }
 
+async function me(parent,args,context,info){
+    let id  = getUserId(context)
+    return context.db.query.user({where:{ id }},info)
+}
+
 async function movies(parent,args,context,info){
     let user = getUserId(context) 
     return context.db.query.movies({},info)
@@ -31,6 +36,7 @@ async function moviesSuscription(parent,args,context,info){
 
 module.exports = {
     users,
+    me,
     movies,
     movie,
     moviesGenre,
