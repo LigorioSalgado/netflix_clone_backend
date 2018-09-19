@@ -1,5 +1,6 @@
 #import User,Movie,Suscription,Rating from './generated/prisma.graphql';
 #import Genres,Genders,Suscriptions,Rates,Categories from './generated/prisma.graphql';
+#import MovieSubscriptionPayload from './generated/prisma.graphql';
 
 type Query {
     users:[User!]!
@@ -21,7 +22,10 @@ type Mutation {
     updateUser(name:String,lastname:String,
     password:String,birth_date:String,gender:Genders,
     avatar:String):User!
+}
 
+type Subscription{
+    newMovie:MovieSubscriptionPayload
 }
 
 

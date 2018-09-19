@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var server = require('../index');
+var {server} = require('../index');
 
 
 const PORT = process.env.PORT || 8000;
